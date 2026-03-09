@@ -13,7 +13,7 @@ import static io.cucumber.core.options.Constants.*;
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectClasspathResource("features") // carpeta donde están tus .feature
+@SelectClasspathResource("/features") // carpeta donde están tus .feature
 @ConfigurationParameter(
         key = PLUGIN_PROPERTY_NAME,
         value = "io.cucumber.core.plugin.SerenityReporterParallel,pretty,timeline:build/test-results/timeline"
@@ -27,7 +27,7 @@ import static io.cucumber.core.options.Constants.*;
 
 @ConfigurationParameter(
         key = FILTER_TAGS_PROPERTY_NAME,
-        value = "@ejemploAPI" // puedes cambiarlo por el tag que quieras ejecutar
+        value = "@ejemploWeb" // puedes cambiarlo por el tag que quieras ejecutar
 )
 
 public class CucumberTestSuite {

@@ -6,9 +6,11 @@ import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
 import io.restassured.RestAssured;
+import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import org.junit.jupiter.api.extension.ExtendWith;
 import tasks.web.Eligiendo;
 import tasks.web.NavigateTo;
 
@@ -17,6 +19,7 @@ import static net.serenitybdd.screenplay.GivenWhenThen.when;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static org.hamcrest.Matchers.equalTo;
 
+@ExtendWith(SerenityJUnit5Extension.class)
 public class PokemonApiStepDefinitions {
 
     @Before

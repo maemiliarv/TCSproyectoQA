@@ -1,2 +1,5 @@
 rootProject.name = 'arquetipo-serenitybdd-appium-selenium-restassured'
 
+
+
+//test.finalizedBy("aggregate","reports") // CLAVE para tu problema
