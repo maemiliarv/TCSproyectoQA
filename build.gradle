@@ -14,7 +14,9 @@ plugins {
     id "net.serenity-bdd.serenity-gradle-plugin" version "4.1.3"
 }
 
-defaultTasks 'clean', 'test', 'aggregate'
+group = 'co.qaconf'
+version = '1.0-SNAPSHOT'
+//defaultTasks 'clean', 'test', 'aggregate'
 
 repositories {
     mavenCentral()
@@ -63,8 +65,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    systemProperty "file.encoding", "UTF-8"
-    finalizedBy("aggregate","reports") // CLAVE para tu problema
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+    //systemProperty "file.encoding", "UTF-8"
+    //finalizedBy("aggregate","reports") // CLAVE para tu problema
 }
 
 serenity {
