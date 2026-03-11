@@ -1,11 +1,10 @@
-package co.qaconf.interactions;
+package actions.appium;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
+import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Enter;
-
-import static co.qaconf.userinterfaces.HomePage.CAMPO_BUSCAR_VIDEOS;
-import static net.serenitybdd.screenplay.Tasks.instrumented;
+import userinterfaces.appium.HomePage;
 
 public class EscribirEnInputs implements Interaction {
 
@@ -18,11 +17,11 @@ public class EscribirEnInputs implements Interaction {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Enter.theValue(nombreVideo).into(CAMPO_BUSCAR_VIDEOS)
+                Enter.theValue(nombreVideo).into(HomePage.CAMPO_BUSCAR_VIDEOS)
         );
     }
 
     public static EscribirEnInputs elTexto(String nombreVideo){
-        return instrumented(EscribirEnInputs.class, nombreVideo);
+        return Tasks.instrumented(EscribirEnInputs.class, nombreVideo);
     }
 }

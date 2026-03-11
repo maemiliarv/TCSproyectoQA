@@ -1,4 +1,4 @@
-package co.qaconf.exceptions;
+package exceptions;
 
 public class BotonCompartirNoEsVisibleException extends AssertionError{
 

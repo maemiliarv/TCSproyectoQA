@@ -1,15 +1,13 @@
-package co.qaconf.interactions;
+package actions.appium;
 
-import co.qaconf.utils.MenuEnum;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
+import utils.appium.MenuEnum;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-
-import static co.qaconf.userinterfaces.HomePage.MENU_ANDROID;
-import static co.qaconf.userinterfaces.HomePage.MENU_IOS;
-import static co.qaconf.utils.MobileHelper.getPlatformName;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
+import userinterfaces.appium.HomePage;
+import utils.appium.MobileHelper;
 
 public class AbrirOpcion implements Interaction {
 
@@ -21,19 +19,19 @@ public class AbrirOpcion implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        String platform = getPlatformName();
+        String platform = MobileHelper.getPlatformName();
         String valorPlataforma = opcionMenu.getValorSegunPlataforma(platform);
         if("Android".equals(platform)){
             actor.attemptsTo(
-                    WaitUntil.the(MENU_ANDROID.of(valorPlataforma), isClickable())
+                    WaitUntil.the(HomePage.MENU_ANDROID.of(valorPlataforma), WebElementStateMatchers.isClickable())
                             .forNoMoreThan(10).seconds(),
-                    Click.on(MENU_ANDROID.of(valorPlataforma))
+                    Click.on(HomePage.MENU_ANDROID.of(valorPlataforma))
             );
         }else {
             actor.attemptsTo(
-                    WaitUntil.the(MENU_IOS.of(valorPlataforma), isClickable())
+                    WaitUntil.the(HomePage.MENU_IOS.of(valorPlataforma), WebElementStateMatchers.isClickable())
                             .forNoMoreThan(10).seconds(),
-                    Click.on(MENU_IOS.of(valorPlataforma))
+                    Click.on(HomePage.MENU_IOS.of(valorPlataforma))
             );
         }
     }

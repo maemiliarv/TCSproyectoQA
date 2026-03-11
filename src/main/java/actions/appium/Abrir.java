@@ -1,6 +1,6 @@
-package co.qaconf.interactions;
+package actions.appium;
 
-import co.qaconf.utils.MenuEnum;
+import utils.appium.MenuEnum;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 

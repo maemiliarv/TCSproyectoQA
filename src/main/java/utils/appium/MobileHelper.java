@@ -1,4 +1,4 @@
-package co.qaconf.utils;
+package utils.appium;
 
 import net.serenitybdd.model.environment.ConfiguredEnvironment;
 import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;

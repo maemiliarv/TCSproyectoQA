@@ -1,33 +1,28 @@
-package co.qaconf.stepdefinitions;
+package poc.stepdefinitios;
 
-import co.qaconf.exceptions.BotonCompartirNoEsVisibleException;
-import co.qaconf.interactions.Abrir;
-import co.qaconf.questions.BotonCompartir;
-import co.qaconf.tasks.BuscarVideo;
-import net.serenitybdd.annotations.Pending;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
+import org.junit.jupiter.api.extension.ExtendWith;
+import tasks.appium.BuscarVideo;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.waits.WaitUntil;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import static co.qaconf.exceptions.BotonCompartirNoEsVisibleException.MENSAJE_BOTON_COMPARTIR_NO_VISIBLE;
-import static co.qaconf.userinterfaces.HomePage.BOTON_BUSCAR;
-import static co.qaconf.userinterfaces.ShortsPage.BOTON_COMPARTIR;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isEnabled;
+import static userinterfaces.appium.HomePage.BOTON_BUSCAR;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
-import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 
-@ExtendWith(SerenityJUnit5Extension.class)
-public class BuscarVideoEnYoutube {
+//@ExtendWith(SerenityJUnit5Extension.class)
+public class YoutubeAppStepDefinitions {
 
+    /*
     @Test
-    @DisplayName("Buscar un video de futbol en Youtube")
+    @DisplayName("Buscar un video de futbol en Youtubee")
     public void buscarVideoFutbolEnYoutube() {
         OnStage.setTheStage(new OnlineCast());
         theActorCalled("Juan").attemptsTo(
@@ -36,6 +31,8 @@ public class BuscarVideoEnYoutube {
                 BuscarVideo.enYoutube()
         );
     }
+
+
 
     @Test
     @DisplayName("Verificar la navegacion por las opciones de Menud e yOutube como Suscripciones y Principal")
@@ -75,4 +72,35 @@ public class BuscarVideoEnYoutube {
                 Ensure.that(BOTON_COMPARTIR).isDisplayed()
         );
     }
+
+
+     */
+
+
+    @Given("que el usuario abre Youtube")
+    public void abrirYoutube() {
+        //System.out.printf("El entorno es = "+System.getenv().toString());
+        OnStage.setTheStage(new OnlineCast());
+        theActorCalled("Juan").attemptsTo(
+                WaitUntil.the(BOTON_BUSCAR, isEnabled()).forNoMoreThan(20).seconds(),
+                WaitUntil.the(BOTON_BUSCAR, isClickable()).forNoMoreThan(10).seconds(),
+                Click.on(BOTON_BUSCAR),
+                BuscarVideo.enYoutube()
+        );
+    }
+
+    @When("busca un video de futbol")
+    public void buscarVideoDeFutbol() {
+        // Aquí implementas la acción de búsqueda
+        System.out.println("Buscar video de futbol en Youtube");
+    }
+
+    @Then("debería ver resultados relacionados")
+    public void validarResultados() {
+        // Aquí validas que aparezcan resultados
+        System.out.println("Validar que aparecen resultados de futbol");
+    }
+    //-----------------------------------------------------------------
+
+
 }

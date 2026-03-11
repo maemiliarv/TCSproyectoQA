@@ -1,12 +1,13 @@
-package co.qaconf.tasks;
+package tasks.appium;
 
-import co.qaconf.interactions.EscribirEnInputs;
+import actions.appium.EscribirEnInputs;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 
-import static co.qaconf.userinterfaces.HomePage.CAMPO_BUSCAR_VIDEOS;
-import static net.serenitybdd.screenplay.Tasks.instrumented;
+import static userinterfaces.appium.HomePage.CAMPO_BUSCAR_VIDEOS;
 
 public class BuscarVideo implements Task {
 
@@ -18,7 +19,7 @@ public class BuscarVideo implements Task {
         );
     }
 
-    public static BuscarVideo enYoutube(){
-        return instrumented(BuscarVideo.class);
+    public static Performable enYoutube(){
+        return Tasks.instrumented(BuscarVideo.class);
     }
 }
