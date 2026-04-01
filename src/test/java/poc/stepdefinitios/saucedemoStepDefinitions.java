@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.en.When; //agregado
 import io.cucumber.java.es.Dado;
+import io.cucumber.java.en.Then;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
@@ -21,6 +22,10 @@ import net.serenitybdd.screenplay.actions.Enter; //agregado
 import net.serenitybdd.screenplay.actions.Click; //agregado
 import userinterfaces.saucedemo.InterfacesUI;
 
+import tasks.saucedemo.VerificarCatalogo;
+import tasks.saucedemo.VerificarTitulo;
+import tasks.saucedemo.VerificarMenuDesplegable;
+import tasks.saucedemo.VerificarUrl;
 
 public class saucedemoStepDefinitions {
 
@@ -37,6 +42,34 @@ public class saucedemoStepDefinitions {
     public void accederAlSistema() {
         theActorInTheSpotlight().attemptsTo(
                 AccederAlSistema.Login()
+        );
+    }
+
+    @Then("el catalogo de productos debe estar visible")
+    public void verificarCatalogo() {
+        theActorInTheSpotlight().attemptsTo(
+                VerificarCatalogo.cargaCorrectamente()
+        );
+    }
+
+    @Then("el titulo del catalogo existe")
+    public void verificarTitulo() {
+        theActorInTheSpotlight().attemptsTo(
+                VerificarTitulo.delCatalogo()
+        );
+    }
+
+    @Then("el boton del menu desplegable existe")
+    public void verificarMenuDesplegable() {
+        theActorInTheSpotlight().attemptsTo(
+                VerificarMenuDesplegable.estaPresente()
+        );
+    }
+
+    @Then("la url debe ser la del catalogo")
+    public void verificarUrl() {
+        theActorInTheSpotlight().attemptsTo(
+                VerificarUrl.delCatalogo()
         );
     }
 
