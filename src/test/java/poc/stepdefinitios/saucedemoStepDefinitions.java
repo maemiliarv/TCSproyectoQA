@@ -1,44 +1,42 @@
 package poc.stepdefinitios;
 
 import io.cucumber.java.Before;
-import io.cucumber.java.ParameterType;
+//import io.cucumber.java.ParameterType;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.es.Cuando;
+import io.cucumber.java.en.When; //agregado
 import io.cucumber.java.es.Dado;
-import io.cucumber.java.es.Entonces;
-import io.cucumber.java.es.Y;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import tasks.saucedemo.AccederAlSistema;
 import tasks.web.Eligiendo;
 import tasks.web.NavigateTo;
+import java.lang.String;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.when;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
-public class BuyProductsStepDefinitions {
+import net.serenitybdd.screenplay.actions.Enter; //agregado
+import net.serenitybdd.screenplay.actions.Click; //agregado
+import userinterfaces.saucedemo.InterfacesUI;
 
-    @ParameterType(".*")
-    public Actor actor(String actorName) {
-        return OnStage.theActorCalled(actorName);
-    }
 
-    @Before
-    public void setTheStage() {
-        OnStage.setTheStage(new OnlineCast());
-    }
+public class saucedemoStepDefinitions {
 
-    @Dado("que el {actor} accede al sitio Demoblaze")
-    public void accedeAlSistema(Actor actor) {
+
+    @Given("que el {actor} navega hacia demoqa.com")
+    public void accederADemoqa(Actor actor) {
 
         actor.wasAbleTo(
-//                NavigateTo.demoBlazePage()
+                NavigateTo.demoQAPage()
         );
     }
 
-    @Cuando("agrega 2 productos ramdom de cualquier categoria al carrito")
-    public void agregarProductosAleatoriosAlCarrito() {
-        when(theActorInTheSpotlight()).attemptsTo(
-                Eligiendo.productosDeCualquierCategoria()
+    @When("acceder al sistema")
+    public void accederAlSistema() {
+        theActorInTheSpotlight().attemptsTo(
+                AccederAlSistema.Login()
         );
     }
 
