@@ -1,0 +1,39 @@
+package tasks.saucedemo;
+
+import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.Tasks;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.matchers.WebElementStateMatchers;
+import net.serenitybdd.screenplay.waits.WaitUntil;
+import userinterfaces.saucedemo.InterfacesUI;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class AgregarTodosLosProductos implements Task {
+
+    public static AgregarTodosLosProductos alCarrito() {
+        return Tasks.instrumented(AgregarTodosLosProductos.class);
+    }
+
+    @Override
+    public <T extends Actor> void performAs(T actor) {
+        List<String> productos = InterfacesUI.NOMBRES_PRODUCTOS_CATALOGO
+                .resolveAllFor(actor)
+                .stream()
+                .map(e -> e.getText())
+                .collect(Collectors.toList());
+
+        for (String producto : productos) {
+            actor.attemptsTo(
+                    Task.where("{0} agrega el producto '" + producto + "' al carrito",
+                            Click.on(InterfacesUI.BTN_ADD_TO_CART.of(producto)),
+                            WaitUntil.the(InterfacesUI.BTN_REMOVE_CATALOGO.of(producto),
+                                            WebElementStateMatchers.isVisible())
+                                    .forNoMoreThan(5).seconds()
+                    )
+            );
+        }
+    }
+}
