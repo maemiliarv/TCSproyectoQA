@@ -15,9 +15,9 @@ public class AccederAlSistema implements Task {
 
     @Override
     public <T extends Actor> void performAs(T Actor){
-                Actor.attemptsTo(Enter.theValue("standard_user").into(InterfacesUI.LOGIN_USUARIO),
-                        Enter.theValue("secret_sauce").into(InterfacesUI.LOGIN_PASSWORD),
-                        Click.on(InterfacesUI.BTN_LOGIN));
+        Actor.attemptsTo(Enter.theValue("standard_user").into(InterfacesUI.LOGIN_USUARIO),
+                Enter.theValue("secret_sauce").into(InterfacesUI.LOGIN_PASSWORD),
+                Click.on(InterfacesUI.BTN_LOGIN));
 
     }
 }

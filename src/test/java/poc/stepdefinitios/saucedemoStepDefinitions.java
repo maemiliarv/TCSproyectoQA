@@ -30,7 +30,7 @@ import tasks.saucedemo.VerificarUrl;
 public class saucedemoStepDefinitions {
 
 
-    @Given("que el {actor} navega hacia demoqa.com")
+    @Given("que el {actor} navega hacia saucedemo")
     public void accederADemoqa(Actor actor) {
 
         actor.wasAbleTo(
@@ -38,7 +38,7 @@ public class saucedemoStepDefinitions {
         );
     }
 
-    @When("acceder al sistema")
+    @When("accede al sistema")
     public void accederAlSistema() {
         theActorInTheSpotlight().attemptsTo(
                 AccederAlSistema.Login()
